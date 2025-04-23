@@ -30,9 +30,9 @@ def update_shop(shop_id: int,shop_data: ShopUpdate,db: Session = Depends(get_db)
     if not shop:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Shop not found or you don't have permission to update it.")
         
-    shop_dict = shop_data.dict(exclude_unset=True)  # Keep only provided fields
+    shop_dict = shop_data.dict(exclude_unset=True)  # Keep only provided fields, convert shop_data pydantic model into python dict
     for field, value in shop_dict.items():
-        setattr(shop, field, value)
+        setattr(shop, field, value) #Uses setattr() to dynamically update the shop object with new values.
 
     db.commit()
     db.refresh(shop)

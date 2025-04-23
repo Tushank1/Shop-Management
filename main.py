@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.database import engine,Base,get_db
+from app.database import engine,Base
 from app.routers import vendor,shop,search
 
 app = FastAPI(title="Vendor Shop Management API")
